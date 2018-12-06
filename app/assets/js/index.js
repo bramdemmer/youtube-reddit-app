@@ -1,8 +1,9 @@
 import 'svgxuse'; // needed for IE 11 SVG icons
 import './assets';
 import '../scss/master.scss';
-
 import getVideoId from 'get-video-id';
+import jsonData from '../data/subreddits.json';
+
 
 // /* eslint-disable */
 
@@ -12,9 +13,8 @@ import getVideoId from 'get-video-id';
 // for a list of subreddits: https://www.reddit.com/r/Music/wiki/musicsubreddits en
 // https://www.reddit.com/r/Music/comments/1c9shq/largest_music_subreddits_by_subscribers/
 // make a better youtubePosts filter. (less checks)
-// play next video when one is not available
+// when error loading refresh or retry
 // save this.redditURL in localstorage or the filters + subreddits
-// Show message: Error playing the current video. Playing Next video...
 
 class YoutubeRedditApp {
   constructor() {
@@ -24,47 +24,10 @@ class YoutubeRedditApp {
       limit: '25',
     };
     this.subreddits = [
-      '70s',
-      'acappella',
-      'acousticcovers',
-      'ambientfolk',
-      'animemusic',
-      'bestofdisney',
-      'boomswing',
-      'bossanova',
-      'carmusic',
-      'concerts',
-      'chillmusic',
-      'cpop',
-      'complextro',
-      'dembow',
-      'disco',
-      'dreampop',
-      'dub',
-      'elephant6',
-      'etimusic',
-      'exotica',
-      'filmmusic',
-      'funksoumusic',
-      'gamemusic',
-      'gamesmusicmixmash',
-      'gunslingermusic',
-      'gypsyjazz',
-      'indiefolk',
-      'jambands',
-      'jazz',
-      'jazzfusion',
-      'jazzinfluence',
-      'listentoconcerts',
-      'klezmer',
-      'lt10k',
-      'medievalmusic',
-      'melancholymusic',
-      'minimalism_music',
-      'motown',
-      'musicforconcentration',
+      'italodisco',
+      'lofihiphop',
     ];
-    this.container = document.querySelector('.message');
+    this.jsonData = jsonData;
   }
 
   init() {
@@ -72,7 +35,7 @@ class YoutubeRedditApp {
       this.initYoutubePlayer(this.getYoutubeVideos(data));
     }).catch((error) => {
       console.warn(error);
-      this.loadMessage('Error: failed to load videos from reddit.');
+      YoutubeRedditApp.loadMessage('Error: failed to load videos from reddit.');
     });
 
     this.initFilters();
@@ -110,7 +73,7 @@ class YoutubeRedditApp {
       .then(data => data.data.children)
       .catch((error) => {
         console.warn(error);
-        this.loadMessage('Error: failed to load videos from reddit.');
+        YoutubeRedditApp.loadMessage('Error: failed to load videos from reddit.');
       });
   }
 
@@ -139,7 +102,8 @@ class YoutubeRedditApp {
     };
 
     this.onPlayerError = (event) => {
-      this.loadMessage(`Error (Code: (${event.data})). Loading next video...`);
+      console.log(`Error code: ${event.data}`);
+      YoutubeRedditApp.loadMessage('Could not load the current video. Loading next...');
       this.player.nextVideo();
     };
   }
@@ -159,7 +123,7 @@ class YoutubeRedditApp {
           this.player.cuePlaylist(newIDs);
         }).catch((error) => {
           console.warn(error);
-          this.loadMessage('Error: failed to load videos from reddit.');
+          YoutubeRedditApp.loadMessage('Error: failed to load videos from reddit.');
         });
       });
     });
@@ -170,11 +134,12 @@ class YoutubeRedditApp {
   // }
 
 
-  loadMessage(message, delay = 5000) {
-    this.container.innerHTML = message;
-    this.container.classList.add('is-visible');
+  static loadMessage(message, delay = 5000) {
+    const container = document.querySelector('.message');
+    container.innerHTML = message;
+    container.classList.add('is-visible');
     const timer = setTimeout(() => {
-      this.container.classList.remove('is-visible');
+      container.classList.remove('is-visible');
       clearTimeout(timer);
     }, delay);
   }

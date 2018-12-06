@@ -1,6 +1,4 @@
-# webpack-startup
-
-Frontend build system startup project.
+# Temporary test app with youtube
 
 install nvm globally on your machine and make sure to use the latest LTS version of node when using this repo.
 

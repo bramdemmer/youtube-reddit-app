@@ -1,0 +1,42 @@
+@font-face {
+  font-family: roboto;
+  src:
+    url('../fonts/roboto-regular.woff2') format('woff2'),
+    url('../fonts/roboto-regular.woff') format('woff');
+  font-weight: 600;
+  font-style: bold;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.filter {
+  display: flex;
+
+  &__link {
+    padding: 1rem;
+    margin: 0.5rem;
+    background-color: #ccc;
+
+    &.is-selected {
+      background: cornflowerblue;
+    }
+  }
+}
+
+.message {
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  opacity: 0;
+  transform: translateY(-10%);
+  transition: all 250ms ease-in-out;
+  background-color: cornflowerblue;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(1rem);
+  }
+}

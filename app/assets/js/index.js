@@ -1,15 +1,27 @@
-import 'svgxuse'; // needed for IE 11 SVG icons
+
 import './assets';
 import '../scss/master.scss';
+// import Vue from 'vue';
 import getVideoId from 'get-video-id';
 import jsonData from '../data/subreddits.json';
 
+console.log(jsonData);
 
-// /* eslint-disable */
+/* eslint-disable */
+const filters = new Vue({
+  el: '#filters',
+  data: {
+    jsonData,
+  },
+});
+/* eslint-enable */
 
-
-// TODO : remove the time options when NEW is selected
-// Add the reddit discussion of the video.
+// TODO:
+// create select all function
+// create remove all or reset button
+// remove the time options when NEW is selected
+// filter posts on youtube videos only
+// Add the reddit discussion link of the video.
 // for a list of subreddits: https://www.reddit.com/r/Music/wiki/musicsubreddits en
 // https://www.reddit.com/r/Music/comments/1c9shq/largest_music_subreddits_by_subscribers/
 // make a better youtubePosts filter. (less checks)
@@ -21,13 +33,25 @@ class YoutubeRedditApp {
     this.filter = {
       sort: 'hot',
       time: 'day',
-      limit: '25',
+      limit: '50',
     };
     this.subreddits = [
-      'italodisco',
-      'lofihiphop',
+      // 'deepintoyoutube',
+      '2010smusic',
+      '2000smusic',
+      '90smusic',
+      '80sremixes',
+      '80smusic',
+      '70smusic',
+      '60smusic',
+      '50smusic',
     ];
     this.jsonData = jsonData;
+    this.messages = {
+      failedRequest: 'Error: failed to load videos from reddit.',
+      invalidVideo: 'The requested video is invalid. Loading next...',
+      videoRemoved: 'The current video is private or was removed by the author. Loading next...',
+    };
   }
 
   init() {
@@ -35,22 +59,48 @@ class YoutubeRedditApp {
       this.initYoutubePlayer(this.getYoutubeVideos(data));
     }).catch((error) => {
       console.warn(error);
-      YoutubeRedditApp.loadMessage('Error: failed to load videos from reddit.');
+      YoutubeRedditApp.loadMessage(this.messages.failedRequest);
     });
 
     this.initFilters();
 
 
-    // this.allsubreddits = document.querySelectorAll('.subreddits__checkbox');
-    // this.isChecked = [];
-    // Array.from(this.allsubreddits).forEach((subreddit) => {
-    //   subreddit.addEventListener('change', () => {
-    //     console.log('logged!');
-    //     this.isChecked = Array.from(this.allsubreddits).filter(checkbox => checkbox.checked);
+    // NEED TO CLEAN UP THIS
+    this.allsubreddits = document.querySelectorAll('.subreddits__checkbox');
+    this.isChecked = [];
+    Array.from(this.allsubreddits).forEach((subreddit) => {
+      subreddit.addEventListener('change', () => {
+        console.log('logged!');
+        this.isChecked = Array.from(this.allsubreddits).filter(checkbox => checkbox.checked);
 
-    //     console.log(this.isChecked);
-    //   });
-    // });
+        this.subreddits = [];
+        this.isChecked.forEach((isChecked) => {
+          this.subreddits.push(isChecked.getAttribute('value'));
+        });
+
+        this.getRedditData().then((data) => {
+          const newIDs = this.getYoutubeVideos(data);
+          this.player.cuePlaylist(newIDs);
+        }).catch((error) => {
+          console.warn(error);
+          YoutubeRedditApp.loadMessage(this.messages.failedRequest);
+        });
+      });
+    });
+
+    document.querySelectorAll('.subreddits__select-all').forEach((selectAll) => {
+      selectAll.addEventListener('change', () => {
+        const checkboxes = selectAll.parentElement.querySelectorAll('.subreddits__checkbox');
+        console.log(selectAll.checked);
+        checkboxes.forEach((checkbox) => {
+          /*eslint-disable*/
+          checkbox.checked = selectAll.checked;
+          /* eslint-enable */
+        });
+
+        // tigger isCheked function
+      });
+    });
   }
 
   getYoutubeVideos(data) {
@@ -58,11 +108,12 @@ class YoutubeRedditApp {
     const youtubePosts = data.filter(post => (post.data.media !== null && post.data.media.type && post.data.media.type.includes('youtube')));
 
     youtubePosts.forEach((post) => {
+      // console.log(post.data.url);
       if (getVideoId(post.data.url).id) {
-        this.videoIDs.push(getVideoId(post.data.url).id);
+        this.videoIDs.push(getVideoId(post.data.url).id.substring(0, 11));
       }
     });
-    console.log(this);
+    console.log(this.videoIDs);
     return this.videoIDs;
   }
 
@@ -73,7 +124,7 @@ class YoutubeRedditApp {
       .then(data => data.data.children)
       .catch((error) => {
         console.warn(error);
-        YoutubeRedditApp.loadMessage('Error: failed to load videos from reddit.');
+        YoutubeRedditApp.loadMessage(this.messages.failedRequest);
       });
   }
 
@@ -89,21 +140,27 @@ class YoutubeRedditApp {
     window.onYouTubeIframeAPIReady = () => {
       this.player = new YT.Player('player', {
         height: '360',
-        width: '100%',
+        width: '560',
+        playerVars: {
+          modestbranding: 1,
+        },
         events: {
           onReady: this.onPlayerReady,
           onError: this.onPlayerError,
         },
       });
     };
-
     this.onPlayerReady = () => {
       this.player.cuePlaylist(ids);
     };
 
     this.onPlayerError = (event) => {
-      console.log(`Error code: ${event.data}`);
-      YoutubeRedditApp.loadMessage('Could not load the current video. Loading next...');
+      console.log(event);
+      if (event.data === 2 || event.data === 5) {
+        YoutubeRedditApp.loadMessage(this.messages.invalidVideo);
+      } else {
+        YoutubeRedditApp.loadMessage(this.messages.videoRemoved);
+      }
       this.player.nextVideo();
     };
   }
@@ -123,7 +180,7 @@ class YoutubeRedditApp {
           this.player.cuePlaylist(newIDs);
         }).catch((error) => {
           console.warn(error);
-          YoutubeRedditApp.loadMessage('Error: failed to load videos from reddit.');
+          YoutubeRedditApp.loadMessage(this.messages.failedRequest);
         });
       });
     });

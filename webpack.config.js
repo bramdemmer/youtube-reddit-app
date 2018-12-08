@@ -34,7 +34,7 @@ module.exports = {
     errorsInOverlay: process.env.ERRORS_IN_OVERLAY || true,
     useHMR: true,
     debugMode: process.env.DEBUG_MODE || false,
-    desktopNotifications: process.env.DESKTOP_NOTIFICATIONS || true,
+    desktopNotifications: process.env.DESKTOP_NOTIFICATIONS || false,
     aem: {
       enabled: false,
       targets: process.env.AEM_TARGETS || ['http://admin:admin@localhost:4502', 'http://admin:admin@localhost:4503'],

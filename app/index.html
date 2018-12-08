@@ -11,85 +11,61 @@
 </head>
 
 <body>
-  <div class="message"></div>
+  <main>
+    <div class="message"></div>
 
 
 
-  <div class="subreddits">
-    <section clas="subreddits__category">
-        <h3>Category title</h3>
-        <input id="select-all-cat-1" class="subreddits__select-all" type="checkbox" value="select-all-cat-1">
-        <label for="select-all-cat-1">Select all cat 1</label>
-        <ul>
-            <li><input id="r-listentothis" class="subreddits__checkbox" type="checkbox" value="listentothis" checked>
-              <label for="r-listentothis">listentothis</label>
-            </li>
-            <li><input id="r-disco" class="subreddits__checkbox"  type="checkbox" value="disco">
-              <label for="r-disco">disco</label>
-            </li>
-            <li><input id="r-jazz" class="subreddits__checkbox" type="checkbox" value="jazz">
-              <label for="r-jazz">jazz</label>
-            </li>
-          </ul>
-    </section>
-    <section clas="subreddits__category">
-        <h3>Category title</h3>
-        <input id="select-all-cat-2" class="subreddits__select-all" type="checkbox" value="select-all-cat-2">
-        <label for="select-all-cat-2">Select all cat 2</label>
-        <ul>
-            <li><input id="r-chillmusic" class="subreddits__checkbox" type="checkbox" value="chillmusic">
-              <label for="r-chillmusic">chillmusic</label>
-            </li>
-            <li><input id="r-filmmusic" class="subreddits__checkbox"  type="checkbox" value="filmmusic">
-              <label for="r-filmmusic">disco</label>
-            </li>
-            <li><input id="r-funksoumusic" class="subreddits__checkbox" type="checkbox" value="funksoumusic">
-              <label for="r-funksoumusic">funksoumusic</label>
-            </li>
-          </ul>
-    </section>
-    <section clas="subreddits__category">
-        <h3>Category title</h3>
-        <input id="select-all-cat-3" class="subreddits__select-all" type="checkbox" value="select-all-cat-3">
-        <label for="select-all-cat-3">Select all cat 3</label>
-        <ul>
-            <li><input id="r-bossanova" class="subreddits__checkbox" type="checkbox" value="bossanova">
-              <label for="r-bossanova">bossanova</label>
-            </li>
-            <li><input id="r-cpop" class="subreddits__checkbox"  type="checkbox" value="cpop">
-              <label for="r-cpop">cpop</label>
-            </li>
-            <li><input id="r-gypsyjazz" class="subreddits__checkbox" type="checkbox" value="gypsyjazz">
-              <label for="r-gypsyjazz">gypsyjazz</label>
-            </li>
-          </ul>
-    </section>
-  </div>
+    <div class="filter-navigation">
+        <nav class="filter filter--limit">
+            <a class="filter__link" data-filter="limit" filter-value="25" href="#0">25</a>
+            <a class="filter__link" data-filter="limit" filter-value="50" href="#0">50</a>
+            <a class="filter__link" data-filter="limit" filter-value="100" href="#0">100</a>
+          </nav>
 
-  <nav class="filter filter--limit">
-    <a class="filter__link" data-filter="limit" filter-value="25" href="#0">25</a>
-    <a class="filter__link" data-filter="limit" filter-value="50" href="#0">50</a>
-    <a class="filter__link" data-filter="limit" filter-value="100" href="#0">100</a>
-  </nav>
+          <nav class="filter filter--sort">
+            <a class="filter__link" data-filter="sort" filter-value="new" href="#0">new</a>
+            <a class="filter__link" data-filter="sort" filter-value="hot" href="#0">hot</a>
+            <a class="filter__link" data-filter="sort" filter-value="top" href="#0">top</a>
+            <a class="filter__link" data-filter="sort" filter-value="controversial" href="#0">controversial</a>
+          </nav>
 
-  <nav class="filter filter--sort">
-    <a class="filter__link" data-filter="sort" filter-value="new" href="#0">new</a>
-    <a class="filter__link" data-filter="sort" filter-value="hot" href="#0">hot</a>
-    <a class="filter__link" data-filter="sort" filter-value="top" href="#0">top</a>
-    <a class="filter__link" data-filter="sort" filter-value="controversial" href="#0">controversial</a>
-  </nav>
+          <nav class="filter filter--time">
+            <a class="filter__link" data-filter="time" filter-value="hour" href="#0">the past hour</a>
+            <a class="filter__link" data-filter="time" filter-value="day" href="#0">the past day</a>
+            <a class="filter__link" data-filter="time" filter-value="week" href="#0">the past week</a>
+            <a class="filter__link" data-filter="time" filter-value="month" href="#0">the past month</a>
+            <a class="filter__link" data-filter="time" filter-value="year" href="#0">the past year</a>
+            <a class="filter__link" data-filter="time" filter-value="all" href="#0">all time</a>
+          </nav>
 
-  <nav class="filter filter--time">
-    <a class="filter__link" data-filter="time" filter-value="hour" href="#0">the past hour</a>
-    <a class="filter__link" data-filter="time" filter-value="day" href="#0">the past day</a>
-    <a class="filter__link" data-filter="time" filter-value="week" href="#0">the past week</a>
-    <a class="filter__link" data-filter="time" filter-value="month" href="#0">the past month</a>
-    <a class="filter__link" data-filter="time" filter-value="year" href="#0">the past year</a>
-    <a class="filter__link" data-filter="time" filter-value="all" href="#0">all time</a>
-  </nav>
+      <div id="filters" class="subreddits">
+          <section v-for="(category, index) in jsonData.category" class="subreddits__category">
+              <h3>{{category.name}}</h3>
+              <input :id="'select-all-' + index" class="subreddits__select-all" type="checkbox" :value="'select-all-' + index">
+              <label :for="'select-all-' + index">Select all {{category.name}}</label>
+              <ul class="subreddits__list">
+                  <li v-for="subreddit in category.subreddits">
+                    <input :id="'r-' + subreddit" class="subreddits__checkbox" type="checkbox" :value="subreddit">
+                    <label :for="'r-' + subreddit">{{subreddit}}</label>
+                  </li>
+                </ul>
+          </section>
+      </div>
 
-  <div id="player"></div>
+    </div>
 
+    <div class="right">
+        <div class="video-container">
+          <div id="player"></div>
+        </div>
+    </div>
+
+  </main>
+  <a target="_blank" href="https://developers.google.com/youtube/iframe_api_reference">IFRAME API</a>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="dist/js/vendors.js"></script>
   <script src="dist/js/main.js"></script>
 </body>

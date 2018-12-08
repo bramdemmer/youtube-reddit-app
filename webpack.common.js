@@ -5,7 +5,7 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./webpack.config');
 
 module.exports = {
@@ -141,9 +141,9 @@ module.exports = {
   },
   plugins: [
     // new HtmlWebpackPlugin({
-    //   template: './app/vue/vue-index.html',
-    //   filename: './vue-index.html',
-    //   inject: true,
+    //   template: './app/index.html',
+    //   filename: './app/index.html',
+    //   inject: false,
     // }),
     new VueLoaderPlugin(),
     new SpriteLoaderPlugin({

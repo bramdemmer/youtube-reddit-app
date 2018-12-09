@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 
 module.exports = {
   browsers: ['last 2 versions', 'not ie <= 10'],
@@ -22,8 +23,20 @@ module.exports = {
   fonts: {
     outputPath: 'fonts/',
   },
-  alias: {
+  data: {
+    filesLocation: './app/assets/**/*.json',
+    outputPath: 'data/',
   },
+  alias: {
+    vue$: 'vue/dist/vue.esm.js',
+    '@pages': path.resolve(__dirname, './app/assets/vueApp/pages'),
+    '@router': path.resolve(__dirname, './app/assets/vueApp/router'),
+    '@components': path.resolve(__dirname, './app/assets/vueApp/components'),
+  },
+  modules: [
+    // path.resolve('pages'),
+    path.resolve('node_modules'),
+  ],
   dev: {
     publicPath: '/dist/', // Must have a / at the start and the end of the path
     contentBase: 'app', // The server content base location

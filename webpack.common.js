@@ -5,8 +5,10 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./webpack.config');
+
 
 module.exports = {
   entry: config.entry,
@@ -159,6 +161,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: config.css.filename,
     }),
+    new CopyWebpackPlugin([{
+      from: config.data.filesLocation,
+      to: config.data.outputPath,
+      flatten: true,
+    }]),
   ],
   optimization: {
     splitChunks: {

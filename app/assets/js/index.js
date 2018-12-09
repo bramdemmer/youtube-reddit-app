@@ -1,22 +1,26 @@
 
 import './assets';
 import '../scss/master.scss';
-// import Vue from 'vue';
+import Vue from 'vue';
 import getVideoId from 'get-video-id';
 import jsonData from '../data/subreddits.json';
+import '../vueApp';
 
-console.log(jsonData);
 
 /* eslint-disable */
-const filters = new Vue({
-  el: '#filters',
-  data: {
-    jsonData,
-  },
-});
+  new Vue({
+    el: '#filters',
+    data: {
+      jsonData,
+    },
+  });
+/* eslint-disable */
+
+
 /* eslint-enable */
 
 // TODO:
+// BETTER USE FETCH the jsonData to avoid cluttering the JS file
 // create select all function
 // create remove all or reset button
 // remove the time options when NEW is selected
@@ -30,6 +34,7 @@ const filters = new Vue({
 
 class YoutubeRedditApp {
   constructor() {
+    this.jsonData = fetch('../data/subreddits.json');
     this.filter = {
       sort: 'hot',
       time: 'day',

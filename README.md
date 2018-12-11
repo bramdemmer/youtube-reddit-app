@@ -1,11 +1,29 @@
-# Temporary test app with youtube
+# youtube-reddit-app
 
-install nvm globally on your machine and make sure to use the latest LTS version of node when using this repo.
+## Project setup
+```
+npm install
+```
 
-`npm install` to install the dependencies.
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-`npm start` to start webpak-dev-server and development process to start coding.
+### Compiles and minifies for production
+```
+npm run build
+```
 
-`npm run dev` to generate development files without webpak-dev-server or watching files.
+### Run your tests
+```
+npm run test
+```
 
-`npm run prod` to generate production ready build with minified files and optimized assets.
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

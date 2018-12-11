@@ -34,7 +34,7 @@ class YoutubeRedditApp {
     this.filter = {
       sort: 'hot',
       time: 'day',
-      limit: '50',
+      limit: '100',
     };
     this.subreddits = [
       // 'deepintoyoutube',
@@ -118,7 +118,7 @@ class YoutubeRedditApp {
     return this.videoIDs;
   }
 
-  getRedditData() {
+  getRedditData() { // https://cors-anywhere.herokuapp.com/
     this.redditUrl = `https://www.reddit.com/r/${this.subreddits.join('+')}/${this.filter.sort}/.json?limit=${this.filter.limit}&t=${this.filter.time}`;
     return fetch(this.redditUrl)
       .then(response => response.json())

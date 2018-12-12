@@ -13,31 +13,15 @@ new Vue({
   render: h => h(App),
 }).$mount('#app');
 
-/* eslint-enable */
-
-// TODO:
-// BETTER USE FETCH the jsonData to avoid cluttering the JS file
-// create select all function
-// create remove all or reset button
-// remove the time options when NEW is selected
-// filter posts on youtube videos only
-// Add the reddit discussion link of the video.
-// for a list of subreddits: https://www.reddit.com/r/Music/wiki/musicsubreddits en
-// https://www.reddit.com/r/Music/comments/1c9shq/largest_music_subreddits_by_subscribers/
-// make a better youtubePosts filter. (less checks)
-// when error loading refresh or retry
-// save this.redditURL in localstorage or the filters + subreddits
-
 class YoutubeRedditApp {
   constructor() {
-    // this.jsonData = fetch('../data/subreddits.json');
     this.filter = {
       sort: 'hot',
       time: 'day',
       limit: '100',
     };
     this.subreddits = [
-      // 'deepintoyoutube',
+      'realdubstep',
       '2010smusic',
       '2000smusic',
       '90smusic',
@@ -118,7 +102,7 @@ class YoutubeRedditApp {
     return this.videoIDs;
   }
 
-  getRedditData() { // https://cors-anywhere.herokuapp.com/
+  getRedditData() {
     this.redditUrl = `https://www.reddit.com/r/${this.subreddits.join('+')}/${this.filter.sort}/.json?limit=${this.filter.limit}&t=${this.filter.time}`;
     return fetch(this.redditUrl)
       .then(response => response.json())
@@ -186,11 +170,6 @@ class YoutubeRedditApp {
       });
     });
   }
-
-  // selectSubreddits() {
-
-  // }
-
 
   static loadMessage(message, delay = 5000) {
     const container = document.querySelector('.message');

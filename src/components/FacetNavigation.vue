@@ -1,93 +1,9 @@
 <template>
   <div class="">
-    <h3>This is the {{ name }}!</h3>
     <div class="filter-navigation">
-      <nav class="filter filter--limit">
-        <a
-          class="filter__link"
-          data-filter="limit"
-          filter-value="25"
-          href="#0"
-        >25</a>
-        <a
-          class="filter__link"
-          data-filter="limit"
-          filter-value="50"
-          href="#0"
-        >50</a>
-        <a
-          class="filter__link"
-          data-filter="limit"
-          filter-value="100"
-          href="#0"
-        >100</a>
-      </nav>
-
-      <nav class="filter filter--sort">
-        <a
-          class="filter__link"
-          data-filter="sort"
-          filter-value="new"
-          href="#0"
-        >new</a>
-        <a
-          class="filter__link"
-          data-filter="sort"
-          filter-value="hot"
-          href="#0"
-        >hot</a>
-        <a
-          class="filter__link"
-          data-filter="sort"
-          filter-value="top"
-          href="#0"
-        >top</a>
-        <a
-          class="filter__link"
-          data-filter="sort"
-          filter-value="controversial"
-          href="#0"
-        >controversial</a>
-      </nav>
-
-      <nav class="filter filter--time">
-        <a
-          class="filter__link"
-          data-filter="time"
-          filter-value="hour"
-          href="#0"
-        >the past hour</a>
-        <a
-          class="filter__link"
-          data-filter="time"
-          filter-value="day"
-          href="#0"
-        >the past day</a>
-        <a
-          class="filter__link"
-          data-filter="time"
-          filter-value="week"
-          href="#0"
-        >the past week</a>
-        <a
-          class="filter__link"
-          data-filter="time"
-          filter-value="month"
-          href="#0"
-        >the past month</a>
-        <a
-          class="filter__link"
-          data-filter="time"
-          filter-value="year"
-          href="#0"
-        >the past year</a>
-        <a
-          class="filter__link"
-          data-filter="time"
-          filter-value="all"
-          href="#0"
-        >all time</a>
-      </nav>
+      <facet-filter name="time" :type="jsonData.filterType.time"/>
+      <facet-filter name="limit" :type="jsonData.filterType.limit"/>
+      <facet-filter name="sort" :type="jsonData.filterType.sort"/>
 
       <div
         id="filters"
@@ -129,13 +45,11 @@
 
 <script>
 import jsonData from '@/assets/data/subreddits.json';
+import FacetFilter from '@/components/FacetFilter.vue';
 
 export default {
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
+  components: {
+    FacetFilter,
   },
   data() {
     return {

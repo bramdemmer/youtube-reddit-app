@@ -1,4 +1,64 @@
 {
+  "filterType": {
+    "time": [
+      {
+        "value": "hour",
+        "text": "the past hour"
+      },
+      {
+        "value": "day",
+        "text": "the past day"
+      },
+      {
+        "value": "week",
+        "text": "the past week"
+      },
+      {
+        "value": "month",
+        "text": "the past month"
+      },
+      {
+        "value": "year",
+        "text": "the past year"
+      },
+      {
+        "value": "all",
+        "text": "all time"
+      }
+    ],
+    "sort": [
+      {
+        "value": "new",
+        "text": "new"
+      },
+      {
+        "value": "hot",
+        "text": "hot"
+      },
+      {
+        "value": "top",
+        "text": "top"
+      },
+      {
+        "value": "controversial",
+        "text": "controversial"
+      }
+    ],
+    "limit": [
+      {
+        "value": 25,
+        "text": "Max 25"
+      },
+      {
+        "value": 50,
+        "text": "Max 50"
+      },
+      {
+        "value": 100,
+        "text": "Max 100"
+      }
+    ]
+  },
   "category": [
     {
       "name": "Classical",

@@ -1,9 +1,8 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/images/logo.png">
-    <message name="Message component" />
-    <player name="Player component loaded with vue" />
-    <facet-navigation name="Facet Navigation component loaded with vue" />
+    <message />
+    <player />
+    <facet-navigation />
   </div>
 </template>
 

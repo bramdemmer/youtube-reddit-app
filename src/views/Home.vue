@@ -1,8 +1,12 @@
 <template>
-  <div class="home">
-    <message />
-    <player />
-    <facet-navigation />
+  <div class="grid">
+    <div class="grid__item">
+      <facet-navigation />
+    </div>
+    <div class="grid__item">
+      <message />
+      <player />
+    </div>
   </div>
 </template>
 
@@ -21,3 +25,14 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.grid {
+  display: flex;
+  flex-flow: row nowrap;
+
+  &__item {
+
+  }
+}
+</style>

@@ -1,12 +1,7 @@
 <template>
   <div class="">
     <div class="filter-navigation">
-      <facet-filter name="time" :type="jsonData.filterType.time"/>
-      <facet-filter name="limit" :type="jsonData.filterType.limit"/>
-      <facet-filter name="sort" :type="jsonData.filterType.sort"/>
-
       <div
-        id="filters"
         class="subreddits"
       >
         <section
@@ -45,12 +40,8 @@
 
 <script>
 import jsonData from '@/assets/data/subreddits.json';
-import FacetFilter from '@/components/FacetFilter.vue';
 
 export default {
-  components: {
-    FacetFilter,
-  },
   data() {
     return {
       jsonData,
@@ -60,21 +51,6 @@ export default {
 </script>
 
 <style lang="scss">
-.filter {
-  display: flex;
-  flex-flow: row wrap;
-
-  &__link {
-    padding: 1rem;
-    margin: 0.5rem;
-    background-color: #ccc;
-
-    &.is-selected {
-      background: cornflowerblue;
-    }
-  }
-}
-
 .subreddits {
   &__category {
 

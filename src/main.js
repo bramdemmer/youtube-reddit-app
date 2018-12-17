@@ -13,6 +13,7 @@ new Vue({
   render: h => h(App),
 }).$mount('#app');
 
+
 class YoutubeRedditApp {
   constructor() {
     this.filter = {
@@ -36,6 +37,7 @@ class YoutubeRedditApp {
       failedRequest: 'Error: failed to load videos from reddit.',
       invalidVideo: 'The requested video is invalid. Loading next...',
       videoRemoved: 'The current video is private or was removed by the author. Loading next...',
+      selectAsubreddit: 'Cannot create a new playlist. Select at least 1 subreddit and try again.',
     };
   }
 
@@ -75,17 +77,22 @@ class YoutubeRedditApp {
   reloadAllSubreddits() {
     this.isChecked = Array.from(this.allsubreddits).filter(checkbox => checkbox.checked);
 
-    this.subreddits = [];
-    this.isChecked.forEach((isChecked) => {
-      this.subreddits.push(isChecked.getAttribute('value'));
-    });
-    this.getRedditData().then((data) => {
-      const newIDs = this.getYoutubeVideos(data);
-      this.player.cuePlaylist(newIDs);
-    }).catch((error) => {
-      console.warn(error);
-      YoutubeRedditApp.loadMessage(this.messages.failedRequest);
-    });
+    if (this.isChecked.length === 0) {
+      YoutubeRedditApp.loadMessage(this.messages.selectAsubreddit);
+    } else {
+      this.subreddits = [];
+
+      this.isChecked.forEach((isChecked) => {
+        this.subreddits.push(isChecked.getAttribute('value'));
+      });
+      this.getRedditData().then((data) => {
+        const newIDs = this.getYoutubeVideos(data);
+        this.player.cuePlaylist(newIDs);
+      }).catch((error) => {
+        console.warn(error);
+        YoutubeRedditApp.loadMessage(this.messages.failedRequest);
+      });
+    }
   }
 
   getYoutubeVideos(data) {
@@ -151,22 +158,22 @@ class YoutubeRedditApp {
   }
 
   initFilters() {
-    const filterLinks = document.querySelectorAll('.filter__link');
+    const filterSelect = document.querySelectorAll('.filter-select');
 
-    Array.from(filterLinks).forEach((link) => {
-      link.addEventListener('click', () => {
-        this.filter[link.getAttribute('data-filter')] = link.getAttribute('filter-value');
+    Array.from(filterSelect).forEach((select) => {
+      select.addEventListener('change', () => {
+        const selectedOption = select.options[select.selectedIndex];
 
-        Array.from(link.parentElement.children).forEach(sibbling => sibbling.classList.remove('is-selected'));
-        link.classList.add('is-selected');
-
-        this.getRedditData().then((data) => {
-          const newIDs = this.getYoutubeVideos(data);
-          this.player.cuePlaylist(newIDs);
-        }).catch((error) => {
-          console.warn(error);
-          YoutubeRedditApp.loadMessage(this.messages.failedRequest);
-        });
+        if (selectedOption.value !== 'none') {
+          this.filter[selectedOption.getAttribute('data-filter')] = selectedOption.value;
+          this.getRedditData().then((data) => {
+            const newIDs = this.getYoutubeVideos(data);
+            this.player.cuePlaylist(newIDs);
+          }).catch((error) => {
+            console.warn(error);
+            YoutubeRedditApp.loadMessage(this.messages.failedRequest);
+          });
+        }
       });
     });
   }

@@ -47,15 +47,15 @@
     "limit": [
       {
         "value": 25,
-        "text": "Max 25"
+        "text": "25"
       },
       {
         "value": 50,
-        "text": "Max 50"
+        "text": "50"
       },
       {
         "value": 100,
-        "text": "Max 100"
+        "text": "100"
       }
     ]
   },
@@ -507,26 +507,6 @@
       ]
     },
     {
-      "name": "Learning",
-      "subreddits": [
-        "abletonclass",
-        "bandmembers",
-        "basslessons",
-        "earlymusicalnotation",
-        "ethnomusicology",
-        "explainthissong",
-        "guitarlessons",
-        "learnmusic",
-        "musiced",
-        "musicindustry",
-        "musicinstructor",
-        "musicology",
-        "musictheory",
-        "solresol",
-        "tabs"
-      ]
-    },
-    {
       "name": "Instruments",
       "subreddits": [
         "accordion",
@@ -572,6 +552,26 @@
         "ukulele",
         "viola",
         "violinist"
+      ]
+    },
+    {
+      "name": "Learning",
+      "subreddits": [
+        "abletonclass",
+        "bandmembers",
+        "basslessons",
+        "earlymusicalnotation",
+        "ethnomusicology",
+        "explainthissong",
+        "guitarlessons",
+        "learnmusic",
+        "musiced",
+        "musicindustry",
+        "musicinstructor",
+        "musicology",
+        "musictheory",
+        "solresol",
+        "tabs"
       ]
     }
   ]

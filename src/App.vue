@@ -11,8 +11,7 @@
 </template>
 
 <style lang="scss">
-
-@import 'node-normalize-scss/_normalize.scss'; // node modules start with ~
+@import 'node-normalize-scss/_normalize.scss';
 
 $color-1: #ffca28;
 $color-2: #00796b;
@@ -27,31 +26,16 @@ $color-2: #00796b;
 }
 
 html {
-background: linear-gradient(143deg, $color-1, $color-2);
-background-size: 400% 400%;
-animation: AnimationName 46s ease infinite;
-}
-
-
-@keyframes AnimationName {
-    0%{background-position:0% 79%}
-    50%{background-position:100% 22%}
-    100%{background-position:0% 79%}
-}
-
-
-#app {
   font-family: roboto, 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
+  background: linear-gradient(143deg, $color-1, $color-2);
+  background-size: 400% 400%;
+  animation: AnimationName 46s ease infinite;
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+
+@keyframes AnimationName {
+  0%{background-position:0% 79%}
+  50%{background-position:100% 22%}
+  100%{background-position:0% 79%}
 }
 </style>

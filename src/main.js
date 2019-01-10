@@ -21,38 +21,26 @@ class YoutubeRedditApp {
       time: 'day',
       limit: '100',
     };
-    this.subreddits = [
-      'realdubstep',
-      '2010smusic',
-      '2000smusic',
-      '90smusic',
-      '80sremixes',
-      '80smusic',
-      '70smusic',
-      '60smusic',
-      '50smusic',
-    ];
+    this.subreddits = null;
     this.jsonData = jsonData;
-    this.messages = {
-      failedRequest: 'Error: failed to load videos from reddit.',
-      invalidVideo: 'The requested video is invalid. Loading next...',
-      videoRemoved: 'The current video is private or was removed by the author. Loading next...',
-      selectAsubreddit: 'Cannot create a new playlist. Select at least 1 subreddit and try again.',
-    };
   }
 
   init() {
+    this.subreddits = this.getRandomSubreddits(3);
+
+    console.log(this.subreddits);
+
     this.getRedditData().then((data) => {
       this.initYoutubePlayer(this.getYoutubeVideos(data));
     }).catch((error) => {
       console.warn(error);
-      YoutubeRedditApp.loadMessage(this.messages.failedRequest);
+      YoutubeRedditApp.loadMessage(jsonData.messages.failedRequest);
     });
 
     this.initFilters();
 
 
-    // NEED TO CLEAN UP THIS
+    // NEED TO CLEAN UP
     this.allsubreddits = document.querySelectorAll('.subreddits__checkbox');
     this.isChecked = [];
     Array.from(this.allsubreddits).forEach((subreddit) => {
@@ -63,7 +51,7 @@ class YoutubeRedditApp {
 
     document.querySelectorAll('.subreddits__select-all').forEach((selectAll) => {
       selectAll.addEventListener('change', () => {
-        const checkboxes = selectAll.parentElement.querySelectorAll('.subreddits__checkbox');
+        const checkboxes = selectAll.parentElement.parentElement.querySelectorAll('.subreddits__checkbox');
         console.log(selectAll.checked);
         checkboxes.forEach((checkbox) => {
           /*eslint-disable*/ checkbox.checked = selectAll.checked; /* eslint-enable */
@@ -73,12 +61,24 @@ class YoutubeRedditApp {
     });
   }
 
+  getRandomSubreddits(n) {
+    const randomSubsArray = [];
+
+    for (let i = 0; i < n; i += 1) {
+      const cat = this.jsonData.category[Math.floor(Math.random() * this.jsonData.category.length)];
+      const sub = cat.subreddits[Math.floor(Math.random() * cat.subreddits.length)];
+      randomSubsArray.push(sub);
+    }
+
+    return randomSubsArray;
+  }
+
 
   reloadAllSubreddits() {
     this.isChecked = Array.from(this.allsubreddits).filter(checkbox => checkbox.checked);
 
     if (this.isChecked.length === 0) {
-      YoutubeRedditApp.loadMessage(this.messages.selectAsubreddit);
+      YoutubeRedditApp.loadMessage(jsonData.messages.selectAsubreddit);
     } else {
       this.subreddits = [];
 
@@ -90,7 +90,7 @@ class YoutubeRedditApp {
         this.player.cuePlaylist(newIDs);
       }).catch((error) => {
         console.warn(error);
-        YoutubeRedditApp.loadMessage(this.messages.failedRequest);
+        YoutubeRedditApp.loadMessage(jsonData.messages.failedRequest);
       });
     }
   }
@@ -116,7 +116,7 @@ class YoutubeRedditApp {
       .then(data => data.data.children)
       .catch((error) => {
         console.warn(error);
-        YoutubeRedditApp.loadMessage(this.messages.failedRequest);
+        YoutubeRedditApp.loadMessage(jsonData.messages.failedRequest);
       });
   }
 
@@ -149,9 +149,9 @@ class YoutubeRedditApp {
     this.onPlayerError = (event) => {
       console.log(event);
       if (event.data === 2 || event.data === 5) {
-        YoutubeRedditApp.loadMessage(this.messages.invalidVideo);
+        YoutubeRedditApp.loadMessage(jsonData.messages.invalidVideo);
       } else {
-        YoutubeRedditApp.loadMessage(this.messages.videoRemoved);
+        YoutubeRedditApp.loadMessage(jsonData.messages.videoRemoved);
       }
       this.player.nextVideo();
     };
@@ -171,7 +171,7 @@ class YoutubeRedditApp {
             this.player.cuePlaylist(newIDs);
           }).catch((error) => {
             console.warn(error);
-            YoutubeRedditApp.loadMessage(this.messages.failedRequest);
+            YoutubeRedditApp.loadMessage(jsonData.messages.failedRequest);
           });
         }
       });

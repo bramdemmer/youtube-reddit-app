@@ -1,7 +1,7 @@
 <template>
   <div class="grid">
     <div class="grid__item">
-      <facet-navigation />
+    <facet-navigation />
     </div>
     <div class="grid__item">
       <message />
@@ -29,10 +29,14 @@ export default {
 <style lang="scss">
 .grid {
   display: flex;
-  flex-flow: row nowrap;
+  width: 100%;
+  flex-flow: row wrap;
 
   &__item {
-
+    width: 100%;
+    @media (min-width: 50rem) {
+      width: 50%;
+    }
   }
 }
 </style>

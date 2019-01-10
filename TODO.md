@@ -1,5 +1,6 @@
 
 // TODO:
+// Add the if array.length === 0 error (no youtube videos found) test with the r/tabs
 // BETTER USE FETCH the jsonData to avoid cluttering the JS file
 // create select all function
 // create remove all or reset button

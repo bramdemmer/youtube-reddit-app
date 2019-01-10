@@ -59,9 +59,16 @@
       }
     ]
   },
+  "messages" : {
+    "failedRequest": "Error: failed to load videos from reddit.",
+    "invalidVideo": "The requested video is invalid. Loading next...",
+    "videoRemoved": "The current video is private or was removed by the author. Loading next...",
+    "selectAsubreddit": "Cannot create a new playlist. Select at least 1 subreddit and try again."
+  },
   "category": [
     {
       "name": "Classical",
+      "isActive": true,
       "subreddits": [
         "composer",
         "baroque",
@@ -80,6 +87,7 @@
     },
     {
       "name": "Electronic",
+      "isActive": true,
       "subreddits": [
         "acidhouse",
         "ambientmusic",
@@ -167,6 +175,7 @@
     },
     {
       "name": "Bands",
+      "isActive": true,
       "subreddits": [
         "80shardcorepunk",
         "90salternative",
@@ -252,6 +261,7 @@
     },
     {
       "name": "Hip Hop &amp; Rap",
+      "isActive": true,
       "subreddits": [
         "80shiphop",
         "90shiphop",
@@ -282,6 +292,7 @@
     },
     {
       "name": "Decades",
+      "isActive": true,
       "subreddits": [
         "2010smusic",
         "2000smusic",
@@ -295,6 +306,7 @@
     },
     {
       "name": "By country &amp; culture",
+      "isActive": true,
       "subreddits": [
         "africanmusic",
         "afrobeat",
@@ -318,6 +330,7 @@
     },
     {
       "name": "Other",
+      "isActive": true,
       "subreddits": [
         "70s",
         "acappella",
@@ -396,6 +409,7 @@
     },
     {
       "name": "Any genre, collections &amp; random",
+      "isActive": true,
       "subreddits": [
         "audioinsurrection",
         "albumaday",
@@ -485,6 +499,7 @@
     },
     {
       "name": "Redditor-made music",
+      "isActive": true,
       "subreddits": [
         "300songs",
         "acousticoriginals",
@@ -508,6 +523,7 @@
     },
     {
       "name": "Instruments",
+      "isActive": true,
       "subreddits": [
         "accordion",
         "banjo",
@@ -556,6 +572,7 @@
     },
     {
       "name": "Learning",
+      "isActive": true,
       "subreddits": [
         "abletonclass",
         "bandmembers",

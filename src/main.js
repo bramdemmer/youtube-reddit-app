@@ -16,7 +16,7 @@ new Vue({
 
 class YoutubeRedditApp {
   constructor() {
-    this.filter = {
+    this.defaultFilters = {
       sort: 'hot',
       time: 'day',
       limit: '100',
@@ -26,6 +26,7 @@ class YoutubeRedditApp {
   }
 
   init() {
+    this.filter = this.defaultFilters;
     this.subreddits = this.getRandomSubreddits(3);
 
     console.log(this.subreddits);
@@ -50,12 +51,20 @@ class YoutubeRedditApp {
     });
 
     document.querySelectorAll('.subreddits__select-all').forEach((selectAll) => {
-      selectAll.addEventListener('change', () => {
+      selectAll.addEventListener('click', () => {
         const checkboxes = selectAll.parentElement.parentElement.querySelectorAll('.subreddits__checkbox');
-        console.log(selectAll.checked);
-        checkboxes.forEach((checkbox) => {
-          /*eslint-disable*/ checkbox.checked = selectAll.checked; /* eslint-enable */
-        });
+
+        if (Array.from(checkboxes).filter(checkbox => checkbox.checked === false).length > 0) {
+          checkboxes.forEach((checkbox) => {
+            // eslint-disable-next-line
+            checkbox.checked = true;
+          });
+        } else {
+          checkboxes.forEach((checkbox) => {
+            // eslint-disable-next-line
+            checkbox.checked = false;
+          });
+        }
         this.reloadAllSubreddits();
       });
     });
@@ -121,12 +130,13 @@ class YoutubeRedditApp {
   }
 
   initYoutubePlayer(ids) {
+    YoutubeRedditApp.loadMessage(jsonData.messages.loadPlayer);
+
     this.player = null;
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
 
     /* global YT */
     window.onYouTubeIframeAPIReady = () => {
@@ -143,6 +153,7 @@ class YoutubeRedditApp {
       });
     };
     this.onPlayerReady = () => {
+      YoutubeRedditApp.loadMessage(jsonData.messages.playerReady);
       this.player.cuePlaylist(ids);
     };
 

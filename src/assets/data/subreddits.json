@@ -63,9 +63,10 @@
     "failedRequest": "Error: failed to load videos from reddit.",
     "invalidVideo": "The requested video is invalid. Loading next...",
     "videoRemoved": "The current video is private or was removed by the author. Loading next...",
-    "selectAsubreddit": "Cannot create a new playlist. Select at least 1 subreddit and try again."
-  },
-  "category": [
+    "selectAsubreddit": "Cannot create a new playlist. Select at least 1 subreddit and try again.",
+    "loadPlayer": "Youtube player is loading...",
+    "playerReady": "Playlist is ready."
+  },  "category": [
     {
       "name": "Classical",
       "isActive": true,
@@ -260,7 +261,7 @@
       ]
     },
     {
-      "name": "Hip Hop &amp; Rap",
+      "name": "Hip Hop & Rap",
       "isActive": true,
       "subreddits": [
         "80shiphop",
@@ -305,7 +306,7 @@
       ]
     },
     {
-      "name": "By country &amp; culture",
+      "name": "By country & culture",
       "isActive": true,
       "subreddits": [
         "africanmusic",
@@ -408,7 +409,7 @@
       ]
     },
     {
-      "name": "Any genre, collections &amp; random",
+      "name": "Any genre, collections & random",
       "isActive": true,
       "subreddits": [
         "audioinsurrection",

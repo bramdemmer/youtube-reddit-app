@@ -11,13 +11,10 @@
         <div class="subreddits__category-head">
           <h3 class="subreddits__category-title" @click="category.isActive = !category.isActive">
             {{ category.name }}</h3>
-          <input
+          <button
             :id="'select-all-' + i"
             class="subreddits__select-all"
-            type="checkbox"
-            :value="'select-all-' + i"
-          >
-          <label :for="'select-all-' + i">Select all</label>
+          >Toggle All</button>
         </div>
         <ul class="subreddits__list" v-show="category.isActive">
           <li class="subreddits__list-item"

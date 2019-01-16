@@ -132,6 +132,8 @@ class YoutubeRedditApp {
   initYoutubePlayer(ids) {
     YoutubeRedditApp.loadMessage(jsonData.messages.loadPlayer);
 
+
+    // CHECK node module scriptjs
     this.player = null;
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';

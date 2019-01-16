@@ -3,12 +3,12 @@
     <div class="youtube-player">
       <div id="player" />
     </div>
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
       <a href="https://www.reddit.com/dev/api">Reddit API</a>
       <a href="https://developers.google.com/youtube/iframe_api_reference">Youtube iframe API</a>
-    </div>
+    </div> -->
     <div class="reddit-filters">
       <facet-filter name="limit" :type="jsonData.filterType.limit" label="Max videos"/>
       <facet-filter name="sort" :type="jsonData.filterType.sort" label="Sort by"/>

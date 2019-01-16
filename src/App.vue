@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- {{filterType.time[0].text}} -->
     <router-view/>
   </div>
 </template>
@@ -28,7 +29,25 @@ html {
 </style>
 
 <script>
-export default {
+import { mapActions, mapGetters } from 'vuex';
 
+export default {
+  computed: {
+  // eslint-disable-next-line
+    ...mapGetters({
+      filterType: 'filterType', // locale naam - store naam
+      timeFilter: 'timeFilter',
+    }),
+  },
+  methods: {
+    // eslint-disable-next-line
+    ...mapActions({
+      getData: 'getData',
+    }),
+  },
+  mounted() {
+    this.getData();
+    console.log(this.filterType);
+  },
 };
 </script>

@@ -68,6 +68,15 @@
     "playerReady": "Playlist is ready."
   },  "category": [
     {
+      "name": "Weird Youtube Videos",
+      "isActive": true,
+      "subreddits": [
+        "weirdyoutubechannels",
+        "deepintoyoutube",
+        "weirdtube"
+      ]
+    },
+    {
       "name": "Classical",
       "isActive": true,
       "subreddits": [
@@ -472,7 +481,6 @@
         "mlptunes",
         "music",
         "musicalbums",
-        "listentothis",
         "musicsuggestions",
         "musictosleepto",
         "musicvideos",

@@ -1,7 +1,84 @@
 {
-  "category": [
+  "filterType": {
+    "time": [
+      {
+        "value": "hour",
+        "text": "the past hour"
+      },
+      {
+        "value": "day",
+        "text": "the past day"
+      },
+      {
+        "value": "week",
+        "text": "the past week"
+      },
+      {
+        "value": "month",
+        "text": "the past month"
+      },
+      {
+        "value": "year",
+        "text": "the past year"
+      },
+      {
+        "value": "all",
+        "text": "all time"
+      }
+    ],
+    "sort": [
+      {
+        "value": "new",
+        "text": "new"
+      },
+      {
+        "value": "hot",
+        "text": "hot"
+      },
+      {
+        "value": "top",
+        "text": "top"
+      },
+      {
+        "value": "controversial",
+        "text": "controversial"
+      }
+    ],
+    "limit": [
+      {
+        "value": 25,
+        "text": "25"
+      },
+      {
+        "value": 50,
+        "text": "50"
+      },
+      {
+        "value": 100,
+        "text": "100"
+      }
+    ]
+  },
+  "messages" : {
+    "failedRequest": "Error: failed to load videos from reddit.",
+    "invalidVideo": "The requested video is invalid. Loading next...",
+    "videoRemoved": "The current video is private or was removed by the author. Loading next...",
+    "selectAsubreddit": "Cannot create a new playlist. Select at least 1 subreddit and try again.",
+    "loadPlayer": "Youtube player is loading...",
+    "playerReady": "Playlist is ready."
+  },  "category": [
+    {
+      "name": "Weird Youtube Videos",
+      "isActive": true,
+      "subreddits": [
+        "weirdyoutubechannels",
+        "deepintoyoutube",
+        "weirdtube"
+      ]
+    },
     {
       "name": "Classical",
+      "isActive": true,
       "subreddits": [
         "composer",
         "baroque",
@@ -20,6 +97,7 @@
     },
     {
       "name": "Electronic",
+      "isActive": true,
       "subreddits": [
         "acidhouse",
         "ambientmusic",
@@ -107,6 +185,7 @@
     },
     {
       "name": "Bands",
+      "isActive": true,
       "subreddits": [
         "80shardcorepunk",
         "90salternative",
@@ -191,7 +270,8 @@
       ]
     },
     {
-      "name": "Hip Hop &amp; Rap",
+      "name": "Hip Hop & Rap",
+      "isActive": true,
       "subreddits": [
         "80shiphop",
         "90shiphop",
@@ -222,6 +302,7 @@
     },
     {
       "name": "Decades",
+      "isActive": true,
       "subreddits": [
         "2010smusic",
         "2000smusic",
@@ -234,7 +315,8 @@
       ]
     },
     {
-      "name": "By country &amp; culture",
+      "name": "By country & culture",
+      "isActive": true,
       "subreddits": [
         "africanmusic",
         "afrobeat",
@@ -258,6 +340,7 @@
     },
     {
       "name": "Other",
+      "isActive": true,
       "subreddits": [
         "70s",
         "acappella",
@@ -335,7 +418,8 @@
       ]
     },
     {
-      "name": "Any genre, collections &amp; random",
+      "name": "Any genre, collections & random",
+      "isActive": true,
       "subreddits": [
         "audioinsurrection",
         "albumaday",
@@ -397,7 +481,6 @@
         "mlptunes",
         "music",
         "musicalbums",
-        "listentothis",
         "musicsuggestions",
         "musictosleepto",
         "musicvideos",
@@ -425,6 +508,7 @@
     },
     {
       "name": "Redditor-made music",
+      "isActive": true,
       "subreddits": [
         "300songs",
         "acousticoriginals",
@@ -447,27 +531,8 @@
       ]
     },
     {
-      "name": "Learning",
-      "subreddits": [
-        "abletonclass",
-        "bandmembers",
-        "basslessons",
-        "earlymusicalnotation",
-        "ethnomusicology",
-        "explainthissong",
-        "guitarlessons",
-        "learnmusic",
-        "musiced",
-        "musicindustry",
-        "musicinstructor",
-        "musicology",
-        "musictheory",
-        "solresol",
-        "tabs"
-      ]
-    },
-    {
       "name": "Instruments",
+      "isActive": true,
       "subreddits": [
         "accordion",
         "banjo",
@@ -512,6 +577,27 @@
         "ukulele",
         "viola",
         "violinist"
+      ]
+    },
+    {
+      "name": "Learning",
+      "isActive": true,
+      "subreddits": [
+        "abletonclass",
+        "bandmembers",
+        "basslessons",
+        "earlymusicalnotation",
+        "ethnomusicology",
+        "explainthissong",
+        "guitarlessons",
+        "learnmusic",
+        "musiced",
+        "musicindustry",
+        "musicinstructor",
+        "musicology",
+        "musictheory",
+        "solresol",
+        "tabs"
       ]
     }
   ]

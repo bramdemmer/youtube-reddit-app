@@ -1,29 +1,23 @@
-# youtube-reddit-app
+# webpack-startup
 
-## Project setup
-```
-npm install
-```
+Frontend build system with webpack
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Install [nvm windows](https://github.com/coreybutler/nvm-windows) on your machine and make sure to use the latest LTS version of node when using this repo.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+`npm install -g eslint stylelint` to install Eslint & Stylelint globally.
 
-### Run your tests
-```
-npm run test
-```
+`npm install` to install the dependencies.
 
-### Lints and fixes files
-```
-npm run lint
-```
+`npm start` to start webpak-dev-server and development process to start coding.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+`npm run dev` to generate development files without webpak-dev-server or watching files.
+
+`npm run prod` to generate production ready build with minified files and optimized assets.
+
+
+Maintenance:
+
+
+`npm install -g npm-check`
+
+`npm-check --skip-unused -u` to update packages'

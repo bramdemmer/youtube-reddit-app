@@ -1,0 +1,17 @@
+@import 'defaults';
+@import "node-normalize-scss/_normalize.scss";
+
+body {
+  background-image: url('../images/png.png');
+  background-color: $color-1;
+  font-family: roboto, sans-serif;
+  border: 10px solid red;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  color: #000;
+}
+
+h1 {
+  color: purple;
+}

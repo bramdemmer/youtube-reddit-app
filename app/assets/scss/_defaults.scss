@@ -1,0 +1,11 @@
+$color-1: #ccc;
+$color-2: red;
+
+@font-face {
+  font-family: roboto;
+  src:
+    url('../fonts/roboto-regular.woff2') format('woff2'),
+    url('../fonts/roboto-regular.woff') format('woff');
+  font-weight: 600;
+  font-style: bold;
+}

@@ -2,107 +2,36 @@
 <html lang="en" dir="ltr">
 
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="x-ua-compatible" content="ie=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>title</title>
-	<meta name="description" content="Site description">
-	<link type="text/css" href="dist/css/main.css">
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>title</title>
+  <meta name="description" content="">
+  <link href="dist/css/main.css">
 </head>
+
 <body>
-  <h1>Hello!</h1>
-  <div id="app"></div>
-  <h3>SVG Icons from sprite: </h3>
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <svg>
-            <use xlink:href="dist/icons/icons.svg#angle-down"></use>
-          </svg>
-        </td>
-        <td>
-          <svg>
-            <use xlink:href="dist/icons/icons.svg#angle-left"></use>
-          </svg>
-        </td>
-        <td>
-          <svg>
-            <use xlink:href="dist/icons/icons.svg#angle-right"></use>
-          </svg>
-        </td>
-        <td>
-          <svg>
-            <use xlink:href="dist/icons/icons.svg#angle-up"></use>
-          </svg>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <svg>
-            <use xlink:href="dist/icons/icons.svg#bars"></use>
-          </svg>
-        </td>
-        <td>
-          <svg>
-            <use xlink:href="dist/icons/icons.svg#chat"></use>
-          </svg>
-        </td>
-        <td>
-          <svg>
-            <use xlink:href="dist/icons/icons.svg#check"></use>
-          </svg>
-        </td>
-        <td>
-          <svg>
-            <use xlink:href="dist/icons/icons.svg#close"></use>
-          </svg>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <svg>
-            <use xlink:href="dist/icons/icons.svg#test"></use>
-          </svg>
-        </td>
-        <td>
-          <svg>
-            <use xlink:href="dist/icons/icons.svg#toddler"></use>
-          </svg>
-        </td>
-        <td>
-          <svg>
-            <use xlink:href="dist/icons/icons.svg#topics"></use>
-          </svg>
-        </td>
-        <td>
-          <svg>
-            <use xlink:href="dist/icons/icons.svg#twitter"></use>
-          </svg>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-	<h3>SVG Image:</h3>
-	<img src="dist/images/svg.svg" alt="">
-	<h3>PNG Image:</h3>
-	<img src="dist/images/png.png" alt="">
-	<h3>JPEG Image:</h3>
-	<img src="dist/images/jpeg.jpg" alt="">
-	<h3>GIF Image:</h3>
-	<img src="dist/images/gif.gif" alt="">
-  <div class="component1">
-    <h3>Component 1</h3>
-  </div>
-  <div class="component2">
-    <h3>Component 2</h3>
-  </div>
-
-  <a href="dist/fonts/roboto-regular.woff">font download</a>
+  <main>
+  <div class="grid">
+      <div class="grid__item">
+          <div class="subreddits">
+            </div>
+      </div>
+      <div class="grid__item">
+          <div class="message"></div>
+          <div class="youtube-player">
+            <div id="player"></div>
+          </div>
+          <div class="filter-navigation">
+            <a class="reset-button" href="#0">Uncheck all and select 3 random.</a>
+            <a class="select-everything" href="#0">select errrrything</a>
+            <div class="filter-block"></div>
+          </div>
+      </div>
+    </div>
+  </main>
   <script src="dist/js/vendors.js"></script>
-	<script src="dist/js/main.js"></script>
+  <script src="dist/js/main.js"></script>
 </body>
+
 </html>
-
-
-

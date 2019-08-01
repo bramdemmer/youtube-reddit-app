@@ -1,55 +1,52 @@
 
-Todo General:
-- compare eslint and babel versions/setup with the vue-cli version
-- deal with relative paths and aliases. check: https://github.com/storybooks/storybook/issues/3339
-- replace sass with post-css only with postcss env presets
-see this design system https://medium.com/codyhouse/create-your-design-system-part-1-typography-7c630d9092bd
-- more about code splitting: https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
-- check if the global public path still works with different folder structure. Otherwise disable it.
-- remove unused packages in package.json
-- check if     // new webpack.optimize.ModuleConcatenationPlugin(), helps create smaller bundle size with lots of JS.
+// TODO:
+// Add the if array.length === 0 error (no youtube videos found) test with the r/tabs
+// BETTER USE FETCH the jsonData to avoid cluttering the JS file
+// create select all function
+// create remove all or reset button
+// remove the time options when NEW is selected
+// filter posts on youtube videos only
+// Add the reddit discussion link of the video.
+// for a list of subreddits: https://www.reddit.com/r/Music/wiki/musicsubreddits en
+// https://www.reddit.com/r/Music/comments/1c9shq/largest_music_subreddits_by_subscribers/
+// make a better youtubePosts filter. (less checks)
+// when error loading refresh or retry
+// save this.redditURL in localstorage or the filters + subreddits
 
 
-`npm install -g npm-check`
+/*
+TRY:
 
-`npm-check --skip-unused -u` to update packages
+fetch('https://www.reddit.com/r/listentothis.json')
+.then(res=>res.json())
+.then(res=>res)
+.then(res=>res.data.children)
+.then(res=>res.map( post => {
+    return {
+      author: post.data.author,
+      link: post.data.url,
+      img: post.data.thumbnail,
+      title: post.data.title
+    }
+}))
+.then(res=>res.filter( post => post.link.includes('yout')))
+// .then(res=>res.map(render))
+.then(res=>console.log(res))
 
-To check VueJS Specific:
-- vue integration
-- `eslint-plugin-vue` for vue linting
-- `vue-hot-reload-api` hot module reloading for vuejs.
+// AND TRY more requests with "https://www.reddit.com/r/listentothis.json?after=t3_a59y31"
+see: https://www.reddit.com/r/redditdev/comments/5m93pl/before_and_after/
+see: https://www.reddit.com/r/redditdev/comments/1jg9yw/understanding_the_beforeafter_parameters_in_get/
+*/
 
-- use the html webpack plugin (when working headless...)
-  const HtmlWebpackPlugin = require('html-webpack-plugin');
-    // new HtmlWebpackPlugin({
-    //   template: './app/vue/vue-index.html',
-    //   filename: './vue-index.html',
-    //   inject: true,
-    // }),
 
-Todo multibrand:
-- create multibrand version
+/**
+ FOR DESIGN:
 
-To check/test:
-- prettier : https://prettier.io/docs/en/eslint.html
-- add url-loader for small images
-- Test the difference between `babel-minify-webpack-plugin` and `uglifyjs-webpack-plugin`
-- Eventually add hashes `-[hash:8]` to files.
-- go through [all webpack loaders](https://webpack.js.org/loaders/)
-- go through [all webpack plugins](https://webpack.js.org/plugins/)
-- const HtmlCriticalPlugin = require('html-critical-webpack-plugin');
-- critical CSS
+https://9elements.github.io/fancy-border-radius/#23.0.33.75--489.250
+https://www.gradient-animator.com/
+http://colormind.io/
 
-favicons:
-````javascript
+ FOR PORTFOLIO:
+ https://carbon.now.sh/?bg=rgba(120%2C128%2C128%2C1)&t=twilight&wt=none&l=auto&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false
 
-      {
-        test: /\.(svg|png|ico|xml|json|webmanifest)$/,
-        loader: 'file-loader',
-        include: /favicons/,
-        options: {
-          name: '[name].[ext]',
-          outputPath: './../favicons',
-        },
-      },
-````
+ */

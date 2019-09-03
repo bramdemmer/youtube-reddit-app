@@ -49,7 +49,7 @@
         }
       ]
     },{
-      "name":"limit",
+      "name":"max",
       "values": [
         {
           "value": 25,

@@ -1,0 +1,38 @@
+
+.subreddits-nav {
+  display: none;
+  margin: 0;
+  background-color: rgb(14, 14, 14);
+  flex-flow: column wrap;
+  position: absolute;
+  z-index: 1;
+  max-width: 20rem;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  &.is-visible {
+    display: flex;
+  }
+
+  .toggle-subreddits {
+    margin: 0.5rem;
+    align-self: flex-end;
+  }
+}
+
+.subreddits {
+  overflow-y: scroll;
+  flex: 1;
+  padding: 1rem;
+
+  li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+  }
+
+  input[type=checkbox] {
+    margin-right: 0.5rem;
+  }
+}

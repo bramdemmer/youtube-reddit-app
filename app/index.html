@@ -14,17 +14,22 @@
   <main>
   <div class="grid">
       <div class="grid__item">
-          <div class="subreddits">
-            </div>
+        <div class="subreddits-nav">
+            <button class="toggle-subreddits">Close</button>
+            <div class="subreddits"></div>
+        </div>
       </div>
-      <div class="grid__item">
+      <div class="grid__item grid__item--player">
+          <h1>YouTube Reddit player</h1>
+          <!-- <h2>Generate playlists from your favorite subreddits</!-->
           <div class="message"></div>
           <div class="youtube-player">
             <div id="player"></div>
           </div>
           <div class="filter-navigation">
-            <a class="reset-button" href="#0">Uncheck all and select 3 random.</a>
-            <a class="select-everything" href="#0">select errrrything</a>
+            <button class="toggle-subreddits" href="#0">Select subreddits</button>
+            <button class="reset-button" href="#0">Select 3 random</button>
+            <button class="select-everything" href="#0">select all</button>
             <div class="filter-block"></div>
           </div>
       </div>

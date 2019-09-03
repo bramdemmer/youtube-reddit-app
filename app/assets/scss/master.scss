@@ -1,2 +1,7 @@
-@import 'defaults';
 @import '~node-normalize-scss/_normalize.scss'; // node modules start with ~
+@import './defaults';
+@import './layout';
+@import './nav-filter';
+@import './nav-subreddits';
+@import './messages';
+@import './player';

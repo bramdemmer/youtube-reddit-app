@@ -20,10 +20,11 @@ class YoutubeRedditApp {
     this.defaultFilters = {
       sort: 'hot',
       time: 'day',
-      limit: '50',
+      limit: '100',
     };
     this.subreddits = null;
     this.jsonData = jsonData;
+    this.navButtons = document.querySelectorAll('.toggle-subreddits');
     this.resetButton = document.querySelector('.reset-button');
     this.selectEverything = document.querySelector('.select-everything');
   }
@@ -69,6 +70,12 @@ class YoutubeRedditApp {
         checkbox.checked = true;
       });
       this.reloadAllSubreddits();
+    });
+
+    Array.from(this.navButtons).forEach((navButton) => {
+      navButton.addEventListener('click', () => {
+        document.querySelector('.subreddits-nav').classList.toggle('is-visible');
+      });
     });
 
     // NEED TO CLEAN UP
@@ -212,7 +219,6 @@ class YoutubeRedditApp {
       });
     };
     this.onPlayerReady = () => {
-      // YoutubeRedditApp.loadMessage(jsonData.messages.playerReady);
       this.player.cuePlaylist(ids);
     };
 

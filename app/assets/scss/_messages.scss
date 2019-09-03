@@ -1,0 +1,26 @@
+
+.message {
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  right: 1rem;
+  opacity: 0;
+  transform: translateY(-10%);
+  transition: all 250ms ease-in-out;
+  color: rgb(14, 14, 14);
+  background-color: #fff;
+  border: 1px solid rgb(190, 190, 190);
+  z-index: 5;
+  pointer-events: none;
+  font-size: 0.8rem;
+
+  strong {
+    font-weight: bold;
+  }
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(1rem);
+    pointer-events: auto;
+  }
+}

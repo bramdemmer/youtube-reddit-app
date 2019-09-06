@@ -14,8 +14,13 @@
   pointer-events: none;
   font-size: 0.8rem;
 
-  strong {
-    font-weight: bold;
+  p {
+    margin-top: 0;
+  }
+
+  ul,
+  li {
+    margin: 0;
   }
 
   &.is-visible {

@@ -22,7 +22,7 @@ class YoutubeRedditApp {
     };
     this.subreddits = null;
     this.jsonData = jsonData;
-    this.navButtons = document.querySelectorAll('.toggle-subreddits');
+    this.navButtons = document.querySelectorAll('.toggle-subreddits, .overlay');
     this.resetButton = document.querySelector('.reset-button');
     this.selectEverything = document.querySelector('.select-everything');
   }
@@ -36,7 +36,7 @@ class YoutubeRedditApp {
 
     this.getRedditData().then((data) => {
       this.initYoutubePlayer(this.getYoutubeVideos(data));
-      YoutubeRedditApp.loadMessage(`Randomly selected three subreddits: <br> <strong>${this.subreddits.join(', ')}</strong>.`);
+      YoutubeRedditApp.loadMessage(`<p>Randomly selected 3 subreddits:</p><ul><li>${this.subreddits.join('</li><li>')}</li>`);
     }).catch((error) => {
       console.warn(error);
       YoutubeRedditApp.loadMessage(jsonData.messages.failedRequest);
@@ -54,7 +54,7 @@ class YoutubeRedditApp {
       this.getRedditData().then((data) => {
         const newIDs = this.getYoutubeVideos(data);
         this.player.cuePlaylist(newIDs);
-        YoutubeRedditApp.loadMessage(`Randomly selected three subreddits: <br> <strong>${this.subreddits.join(', ')}</strong>.`);
+        YoutubeRedditApp.loadMessage(`<p>Randomly selected 3 subreddits:</p><ul><li>${this.subreddits.join('</li><li>')}</li>`);
       }).catch((error) => {
         console.warn(error);
         YoutubeRedditApp.loadMessage(jsonData.messages.failedRequest);
@@ -73,6 +73,7 @@ class YoutubeRedditApp {
     Array.from(this.navButtons).forEach((navButton) => {
       navButton.addEventListener('click', () => {
         document.querySelector('.subreddits-nav').classList.toggle('is-visible');
+        document.querySelector('.overlay').classList.toggle('is-visible');
       });
     });
 

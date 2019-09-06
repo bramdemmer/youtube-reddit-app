@@ -3,8 +3,6 @@ import getVideoId from 'get-video-id';
 import jsonData from '../data/subreddits.json';
 
 // TODO:
-// BETTER USE FETCH the jsonData to avoid cluttering the JS file
-// create select all function
 // remove the time options when NEW is selected
 // filter posts on youtube videos only
 // Add the reddit discussion link of the video.
@@ -184,9 +182,7 @@ class YoutubeRedditApp {
 
   getRedditData() {
     this.redditUrl = `https://www.reddit.com/r/${this.subreddits.join('+')}/${this.filter.sort}/.json?limit=${this.filter.limit}&t=${this.filter.time}`;
-    return fetch(this.redditUrl, {
-      credentials: 'include',
-    })
+    return fetch(this.redditUrl)
       .then(response => response.json())
       .then(data => data.data.children)
       .catch((error) => {

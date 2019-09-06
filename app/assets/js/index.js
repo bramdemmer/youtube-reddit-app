@@ -184,7 +184,9 @@ class YoutubeRedditApp {
 
   getRedditData() {
     this.redditUrl = `https://www.reddit.com/r/${this.subreddits.join('+')}/${this.filter.sort}/.json?limit=${this.filter.limit}&t=${this.filter.time}`;
-    return fetch(this.redditUrl)
+    return fetch(this.redditUrl, {
+      credentials: 'include',
+    })
       .then(response => response.json())
       .then(data => data.data.children)
       .catch((error) => {
